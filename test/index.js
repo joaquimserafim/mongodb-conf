@@ -7,8 +7,6 @@ function isJSObject(obj) {
   return obj === Object(obj) && !Array.isArray(obj);
 }
 
-var mongoConf = 'test/fixtures/mongod.conf';
-
 tape('convert a `conf` file to JSON', function(assert) {
   function parseConfToJSON(err, json) {
     if (err) {
@@ -18,5 +16,18 @@ tape('convert a `conf` file to JSON', function(assert) {
       assert.end();
     }
   }
-  parser.toJSON(mongoConf, parseConfToJSON); 
+  parser.toJSON('test/fixtures/mongod.conf', parseConfToJSON);
+});
+
+tape('try to convert a bad `conf` file', function(assert) {
+  function parseConfToJSON(err, json) {
+    if (err) {
+      assert.equal(err.message, 'mongod.conf with wrong extension!');
+      assert.end();
+    } else {
+      // never should enter in here
+      assert.fail(json);
+    }
+  }
+  parser.toJSON('test/fixtures/mongod.cof', parseConfToJSON);
 });

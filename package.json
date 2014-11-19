@@ -1,7 +1,7 @@
 {
   "name": "mongodb-config",
   "version": "0.0.0",
-  "description": "Convert your mongod.conf into the new YAML-based configuration file format or into JSON and use in your module",
+  "description": "Convert your mongod.conf into the new YAML-based configuration file format or into JSON so that you can use in your module",
   "bin": {
     "parse-mongod-conf": "cli.js"
   },
@@ -16,6 +16,13 @@
     "check-coverage": "./node_modules/istanbul/lib/cli.js check-coverage --statements 100 --functions 100 --lines 100 --branches 100",
     "coverage": "open coverage/lcov-report/index.html"
   },
+  "keywords": [
+    "mongodb",
+    "conf",
+    "YAML",
+    "yml",
+    "JSON"
+  ],
   "author": "mongodblisbon",
   "license": "Apache-2.0",
   "dependencies": {

@@ -11,7 +11,7 @@ module.exports = parser;
 function parser() {
   function readConfFile(filePath, cb) {
     if ('.conf' !== path.extname(filePath)) {
-      cb(new Error('wrong extension!'));
+      cb(new Error('mongod.conf with wrong extension!'));
     } else {
       var data = [];
       fs.createReadStream(path.join(__dirname, filePath))
