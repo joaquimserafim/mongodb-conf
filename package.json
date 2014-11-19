@@ -1,0 +1,33 @@
+{
+  "name": "mongodb-config",
+  "version": "0.0.0",
+  "description": "Convert your mongod.conf into the new YAML-based configuration file format or into JSON and use in your module",
+  "bin": {
+    "parse-mongod-conf": "cli.js"
+  },
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/tape/bin/tape test/*.js",
+    "jshint": "./node_modules/jshint/bin/jshint -c .jshintrc *.js test/*.js",
+    "codestyle": "./node_modules/jscs/bin/jscs -p google *.js test/*.js",
+    "check-coverage": "./node_modules/istanbul/lib/cli.js check-coverage --statements 100 --functions 100 --lines 100 --branches 100",
+    "coverage": "open coverage/lcov-report/index.html"
+  },
+  "author": "mongodblisbon",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "debug": "^2.1.0",
+    "joi": "^4.9.0",
+    "split": "^0.3.1",
+    "yamljs": "^0.2.1"
+  },
+  "devDependencies": {
+    "istanbul": "^0.3.2",
+    "jscs": "^1.7.3",
+    "jshint": "^2.5.10",
+    "tape": "^3.0.3"
+  }
+}
