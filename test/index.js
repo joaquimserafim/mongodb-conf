@@ -50,3 +50,11 @@ tape('a bad `JSON` file', function(assert) {
   }
   parser.json2yaml('test/fixtures/bad_json_file.json', json2yamlCb);
 });
+
+tape('covert from YAMl to JSON', function(assert) {
+  parser.yaml2json('test/fixtures/mongod_conf.yml', function(err, obj) {
+    assert.deepEqual(err, null);
+    assert.deepEqual(ut.isJSObject(obj), true);
+    assert.end();
+  });
+});

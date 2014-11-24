@@ -30,7 +30,7 @@ function parser() {
     });
   }
 
-  function conf2json(path, cb) {
+  function conf2json(file, cb) {
     function readFileConfCb(err, data) {
       if (err) {
         cb(err);
@@ -44,10 +44,10 @@ function parser() {
       }
     }
 
-    readFile(false, path, readFileConfCb);
+    readFile(false, file, readFileConfCb);
   }
 
-  function json2yaml(path, cb) {
+  function json2yaml(file, cb) {
     function readFileJSONCb(err, data) {
       if (err) {
         cb(err);
@@ -57,11 +57,18 @@ function parser() {
       }
     }
 
-    readFile(true, path, readFileJSONCb);
+    readFile(true, file, readFileJSONCb);
+  }
+
+  function yaml2json(file, cb) {
+    yaml.load(file, function(obj) {
+      cb(null, obj);
+    });
   }
 
   return {
     conf2json: conf2json,
-    json2yaml: json2yaml
+    json2yaml: json2yaml,
+    yaml2json: yaml2json
   };
 }
