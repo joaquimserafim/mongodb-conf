@@ -5,7 +5,7 @@
 
 
 **code coverage** 	
-`npm test && npm run coverage`
+`npm test && npm run check-coverage && npm run coverage`
 
 **codestyle** 	
 `npm run codestyle`
