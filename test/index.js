@@ -53,8 +53,17 @@ tape('a bad `JSON` file', function(assert) {
 
 tape('covert from YAMl to JSON', function(assert) {
   parser.yaml2json('test/fixtures/mongod_conf.yml', function(err, obj) {
-    assert.deepEqual(err, null);
+    assert.deepEqual(err, undefined);
     assert.deepEqual(ut.isJSObject(obj), true);
+    assert.end();
+  });
+});
+
+tape('YAMl file doesn\'t exist', function(assert) {
+  parser.yaml2json('test/fixtures/mongod_con.yml', function(err, obj) {
+    assert.deepEqual(err instanceof Error, true);
+    assert.equal(err.message, 'Invalid YAML file or file doesn\'t exist!');
+    assert.deepEqual(obj, undefined);
     assert.end();
   });
 });

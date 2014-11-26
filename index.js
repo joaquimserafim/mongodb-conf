@@ -1,7 +1,6 @@
 'use strict';
 
 var fs    = require('fs');
-var path  = require('path');
 var yaml  = require('yamljs');
 var ut    = require('./ut');
 
@@ -16,7 +15,7 @@ function parser() {
         if (isJson) {
           var json = ut.parseJSON(data);
           if (json) {
-            cb(null, json);
+            cb(undefined, json);
           } else {
             cb(new Error('invalid JSON file!'));
           }
@@ -24,7 +23,7 @@ function parser() {
           var lines = data.split(/\r?\n/).filter(function(line) {
             return !!line.indexOf('#') && line;
           });
-          cb(null, lines);
+          cb(undefined, lines);
         }
       }
     });
@@ -40,7 +39,7 @@ function parser() {
           var s = e.split('=');
           obj[s[0]] = s[1];
         });
-        cb(null, obj);
+        cb(undefined, obj);
       }
     }
 
@@ -53,7 +52,7 @@ function parser() {
         cb(err);
       } else {
         var yamlString = yaml.stringify(data, 4);
-        cb(null, yamlString);
+        cb(undefined, yamlString);
       }
     }
 
@@ -62,7 +61,11 @@ function parser() {
 
   function yaml2json(file, cb) {
     yaml.load(file, function(obj) {
-      cb(null, obj);
+      if (obj) {
+        cb(undefined, obj);
+      } else {
+        cb(new Error('Invalid YAML file or file doesn\'t exist!'));
+      }
     });
   }
 

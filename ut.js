@@ -10,6 +10,6 @@ ut.parseJSON = function parseJSON(str) {
   try {
     return JSON.parse(str);
   } catch(ex) {
-    return null;
+    return;
   }
 };
